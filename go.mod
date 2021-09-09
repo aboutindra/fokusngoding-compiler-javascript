@@ -1,8 +1,11 @@
 module fc-javascript
 
-go 1.13
+go 1.16
 
 require (
-	github.com/gofiber/cors v0.2.2
-	github.com/gofiber/fiber v1.14.2
+	github.com/gofiber/fiber/v2 v2.7.1
+	github.com/klauspost/compress v1.12.1 // indirect
+	github.com/valyala/fasthttp v1.23.0 // indirect
+	github.com/valyala/tcplisten v1.0.0 // indirect
+	golang.org/x/sys v0.0.0-20210415045647-66c3f260301c // indirect
 )

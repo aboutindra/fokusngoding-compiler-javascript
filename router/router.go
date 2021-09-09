@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"fc-javascript/data"
 	"fmt"
-	"github.com/gofiber/fiber"
+	"github.com/gofiber/fiber/v2"
 	"os"
 	"os/exec"
 )
@@ -12,7 +12,7 @@ import (
 type Router struct {
 }
 
-func (r Router) Exec(c *fiber.Ctx) {
+func (r Router) Exec(c *fiber.Ctx) error {
 
 	var Src data.Codes
 	json.Unmarshal([]byte(c.Body()), &Src)
@@ -24,11 +24,11 @@ func (r Router) Exec(c *fiber.Ctx) {
 	stdout, err := cmd1.CombinedOutput()
 
 	if err != nil {
-		c.Status(500).Send(err)
+		c.Status(500).SendString(err.Error())
 	}
 
 	response, _ := json.Marshal(string(stdout))
 	fmt.Print("\nIni out : ", string(response))
-	c.Send(response)
+	return c.Send(response)
 
 }
